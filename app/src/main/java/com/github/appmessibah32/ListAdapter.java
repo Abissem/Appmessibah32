@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    private List<Pokemon> values;
+    private List<Dragonball> values;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -19,6 +19,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // each data item is just a string in this case
         TextView txtHeader;
         TextView txtFooter;
+        TextView txtLast;
         View layout;
 
         ViewHolder(View v) {
@@ -26,10 +27,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             layout = v;
             txtHeader = (TextView) v.findViewById(R.id.firstLine);
             txtFooter = (TextView) v.findViewById(R.id.secondLine);
+            txtLast = (TextView) v.findViewById(R.id.thirdLine);
         }
     }
 
-    public void add(int position, Pokemon item) {
+    public void add(int position, Dragonball item) {
         values.add(position, item);
         notifyItemInserted(position);
     }
@@ -40,7 +42,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(List<Pokemon> myDataset) {
+    public ListAdapter(List<Dragonball> myDataset) {
         values = myDataset;
     }
 
@@ -63,9 +65,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        final Pokemon currentPokemon = values.get(position);
+        final Dragonball currentPokemon = values.get(position);
         holder.txtHeader.setText(currentPokemon.getName());
-        holder.txtFooter.setText(currentPokemon.getUrl());
+        holder.txtFooter.setText("Origin planet : " + currentPokemon.getOriginPlanet());
+        holder.txtLast.setText(currentPokemon.getGender());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

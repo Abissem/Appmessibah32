@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final String BASE_URL = "https://pokeapi.co/";
+    static final String BASE_URL = "https://dragon-ball-api.herokuapp.com/";
 
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
@@ -43,27 +43,27 @@ public class MainActivity extends AppCompatActivity {
                 .setLenient()
                 .create();
 
-        List<Pokemon> pokemonList = getDataFromCache();
+        List<Dragonball> characterList = getDataFromCache();
 
-        if(pokemonList != null){
-            showList(pokemonList);
+        if(characterList != null){
+            showList(characterList);
         } else {
             makeApiCall();
         }
     }
 
-    private List<Pokemon> getDataFromCache() {
-        String jsonPokemon = sharedPreferences.getString(Constants.KEY_POKEMON_LIST, null);
+    private List<Dragonball> getDataFromCache() {
+        String jsonCharacter = sharedPreferences.getString(Constants.KEY_CHARACTER_LIST, null);
 
-        if(jsonPokemon == null){
+        if(jsonCharacter == null){
             return null;
         } else {
-            Type listType = new TypeToken<List<Pokemon>>(){}.getType();
-            return gson.fromJson(jsonPokemon, listType);
+            Type listType = new TypeToken<List<Dragonball>>(){}.getType();
+            return gson.fromJson(jsonCharacter, listType);
         }
     }
 
-    private void showList(List<Pokemon> pokemonList) {
+    private void showList(List<Dragonball> characterList) {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         // use this setting to
         // improve performance if you know that changes
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new ListAdapter(pokemonList);
+        mAdapter = new ListAdapter(characterList);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -86,35 +86,35 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        PokeApi pokeApi = retrofit.create(PokeApi.class);
+        DragonApi dragonApi = retrofit.create(DragonApi.class);
 
-        Call<RestPokemonResponse> call = pokeApi.getPokemonResponse();
-        call.enqueue(new Callback<RestPokemonResponse>() {
+        Call<List<Dragonball>> call = dragonApi.getCharacterResponse();
+        call.enqueue(new Callback<List<Dragonball>>() {
             @Override
-            public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
+            public void onResponse(Call<List<Dragonball>> call, Response<List<Dragonball>> response) {
                 if(response.isSuccessful() && response.body() != null){
-                    List<Pokemon> pokemonList = response.body().getResults();
-                    saveList(pokemonList);
-                    showList(pokemonList);
+                    List<Dragonball> characterList = response.body();
+                    saveList(characterList);
+                    showList(characterList);
                 } else {
                     showError();
                 }
             }
 
             @Override
-            public void onFailure(Call<RestPokemonResponse> call, Throwable t) {
+            public void onFailure(Call<List<Dragonball>> call, Throwable t) {
 
                 showError();
             }
         });
     }
 
-    private void saveList(List<Pokemon> pokemonList) {
-        String jsonString = gson.toJson(pokemonList);
+    private void saveList(List<Dragonball> characterList) {
+        String jsonString = gson.toJson(characterList);
 
         sharedPreferences
                 .edit()
-                .putString(Constants.KEY_POKEMON_LIST, jsonString)
+                .putString(Constants.KEY_CHARACTER_LIST, jsonString)
                 .apply();
         Toast.makeText(this, "List Saved", Toast.LENGTH_SHORT).show();
 
