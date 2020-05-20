@@ -1,4 +1,6 @@
-package com.github.appmessibah32;
+package com.github.appmessibah32.data;
+
+import com.github.appmessibah32.presentation.model.Dragonball;
 
 import java.util.List;
 

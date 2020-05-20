@@ -1,4 +1,4 @@
-package com.github.appmessibah32;
+package com.github.appmessibah32.presentation.model;
 
 public class Dragonball {
 

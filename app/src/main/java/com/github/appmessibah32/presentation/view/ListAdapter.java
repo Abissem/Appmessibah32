@@ -1,16 +1,27 @@
-package com.github.appmessibah32;
+package com.github.appmessibah32.presentation.view;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.github.appmessibah32.R;
+import com.github.appmessibah32.presentation.model.Dragonball;
 
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<Dragonball> values;
+    private Context context;
+
+    public ListAdapter(Context context){
+        this.context=context;
+    }
+
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -20,14 +31,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         TextView txtHeader;
         TextView txtFooter;
         TextView txtLast;
+        ImageView Image;
         View layout;
 
-        ViewHolder(View v) {
+         ViewHolder(View v) {
             super(v);
             layout = v;
             txtHeader = (TextView) v.findViewById(R.id.firstLine);
             txtFooter = (TextView) v.findViewById(R.id.secondLine);
             txtLast = (TextView) v.findViewById(R.id.thirdLine);
+            Image = (ImageView) v.findViewById(R.id.icon);
         }
     }
 
@@ -63,12 +76,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        final Dragonball currentPokemon = values.get(position);
-        holder.txtHeader.setText(currentPokemon.getName());
-        holder.txtFooter.setText("Origin planet : " + currentPokemon.getOriginPlanet());
-        holder.txtLast.setText(currentPokemon.getGender());
+        final Dragonball currentCharacter = values.get(position);
+
+        holder.txtHeader.setText(currentCharacter.getName());
+        holder.txtFooter.setText("Origin planet : " + currentCharacter.getOriginPlanet());
+        holder.txtLast.setText(currentCharacter.getGender());
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
