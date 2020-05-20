@@ -5,11 +5,11 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.github.appmessibah32.Constants;
+import com.github.appmessibah32.Singletons;
 import com.github.appmessibah32.data.DragonApi;
 import com.github.appmessibah32.presentation.model.Dragonball;
 import com.github.appmessibah32.presentation.view.MainActivity;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -28,7 +28,7 @@ public class MainController {
     private Gson gson;
     private MainActivity view;
 
-    public MainController(MainActivity mainActivity, Gson gson, SharedPreferences sharedPreferences) {
+    public MainController(MainActivity mainActivity, Gson gson, SharedPreferences sharedPreferences, Context context) {
         this.view = mainActivity;
         this.gson = gson;
         this.sharedPreferences = sharedPreferences;
@@ -46,16 +46,7 @@ public class MainController {
     }
 
     private void makeApiCall(){
-
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        DragonApi dragonApi = retrofit.create(DragonApi.class);
-
-        Call<List<Dragonball>> call = dragonApi.getCharacterResponse();
+        Call<List<Dragonball>> call = Singletons.getDragonApi().getCharacterResponse();
         call.enqueue(new Callback<List<Dragonball>>() {
             @Override
             public void onResponse(Call<List<Dragonball>> call, Response<List<Dragonball>> response) {
