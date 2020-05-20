@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -12,13 +11,10 @@ import com.github.appmessibah32.R;
 import com.github.appmessibah32.Singletons;
 import com.github.appmessibah32.presentation.controller.MainController;
 import com.github.appmessibah32.presentation.model.Dragonball;
-import com.google.gson.Gson;
-
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
 
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
@@ -41,22 +37,26 @@ public class MainActivity extends AppCompatActivity {
         controller.onStart();
     }
 
-
-
     public void showList(List<Dragonball> characterList) {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new ListAdapter(characterList);
+        mAdapter = new ListAdapter(characterList, new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Dragonball item) {
+                controller.onItemClick(item);
+            }
+        });
         recyclerView.setAdapter(mAdapter);
     }
 
-
-
     public void showError() {
-
         Toast.makeText(this, "API Error", Toast.LENGTH_SHORT).show();
+    }
+
+    public void navigateToDetails(Dragonball dragonball) {
+        Toast.makeText(this, "TODO Navigate", Toast.LENGTH_SHORT).show();
     }
 }

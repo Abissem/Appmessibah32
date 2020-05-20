@@ -6,7 +6,6 @@ import android.widget.Toast;
 
 import com.github.appmessibah32.Constants;
 import com.github.appmessibah32.Singletons;
-import com.github.appmessibah32.data.DragonApi;
 import com.github.appmessibah32.presentation.model.Dragonball;
 import com.github.appmessibah32.presentation.view.MainActivity;
 import com.google.gson.Gson;
@@ -18,8 +17,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainController {
 
@@ -75,7 +72,6 @@ public class MainController {
                 .putString(Constants.KEY_CHARACTER_LIST, jsonString)
                 .apply();
         Toast.makeText(context, "List Saved", Toast.LENGTH_SHORT).show();
-
     }
 
     private List<Dragonball> getDataFromCache() {
@@ -90,7 +86,7 @@ public class MainController {
     }
 
     public void onItemClick(Dragonball dragonball){
-
+        view.navigateToDetails(dragonball);
     }
 
     public void onButtonAClick(){
