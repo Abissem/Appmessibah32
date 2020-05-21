@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "552061642883",
+    "firebase_url": "https://appmessibah32.firebaseio.com",
+    "project_id": "appmessibah32",
+    "storage_bucket": "appmessibah32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552061642883:android:ec08d931bcd45728f913b6",
+        "android_client_info": {
+          "package_name": "com.github.appmessibah32"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552061642883-3up9cia5ehouk6227f3q86p9tane8oa8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ9PaTQuHAmbhNW2XfLy4mBaUl3-8U2oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552061642883-3up9cia5ehouk6227f3q86p9tane8oa8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
