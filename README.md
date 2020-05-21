@@ -28,7 +28,7 @@ Avoir une processeur Intel ou une téléphone Android pour pouvoir tester son ap
 
 ## Fonctionnalités
 
--Icone de l'application
+-Icone de l'application (Adaptative selon le format imposé par le téléphone,rond,carré,etc...)
 
 ![Icone](https://github.com/Abissem/appmessibah32/blob/master/img_readme/icone.png)
 
