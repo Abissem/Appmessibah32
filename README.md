@@ -34,7 +34,7 @@ Avoir une processeur Intel ou une téléphone Android pour pouvoir tester son ap
 
 ### Premier écran
 
--Splash affichant Son Goku
+- Splash affichant Son Goku
 
 ![Splashscreen](https://github.com/Abissem/appmessibah32/blob/master/img_readme/spalshcreen.png)
 
