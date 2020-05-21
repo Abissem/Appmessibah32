@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigateToDetails(Dragonball dragonball) {
-        Toast.makeText(this, "TODO Navigate", Toast.LENGTH_SHORT).show();
+        Intent myIntent = new Intent(MainActivity.this, DetailActivity.class);
+        myIntent.putExtra("dragonballKey", Singletons.getGson().toJson(dragonball));
+        MainActivity.this.startActivity(myIntent);
     }
 }
