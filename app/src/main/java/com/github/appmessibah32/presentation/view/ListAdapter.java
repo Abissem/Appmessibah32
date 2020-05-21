@@ -1,5 +1,6 @@
 package com.github.appmessibah32.presentation.view;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.github.appmessibah32.Constants;
 import com.github.appmessibah32.R;
 import com.github.appmessibah32.presentation.model.Dragonball;
 
@@ -16,6 +20,7 @@ import java.util.List;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<Dragonball> values;
     private OnItemClickListener listener;
+    private Context context;
 
     public interface  OnItemClickListener {
         void onItemClick(Dragonball item);
@@ -48,9 +53,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         notifyItemRemoved(position);
     }
 
-    public ListAdapter(List<Dragonball> myDataset, OnItemClickListener listener) {
+    public ListAdapter(List<Dragonball> myDataset, OnItemClickListener listener, Context context) {
         this.values = myDataset;
         this.listener = listener;
+        this.context = context;
     }
 
     @Override
@@ -74,6 +80,21 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.txtHeader.setText(currentCharacter.getName());
         holder.txtFooter.setText("Origin planet : " + currentCharacter.getOriginPlanet());
         holder.txtLast.setText(currentCharacter.getGender());
+        if(currentCharacter.getImage().charAt(0) == '.') {
+            Glide.with(context).applyDefaultRequestOptions(
+                    new RequestOptions()
+                            .placeholder(R.drawable.ic_refresh_green_100dp)
+                            .error(R.drawable.ic_healing_red_100dp))
+                            .load(Constants.BASE_URL + currentCharacter.getImage())
+                            .centerCrop()
+                            .into(holder.Image);
+        }else Glide.with(context).applyDefaultRequestOptions(
+                new RequestOptions()
+                            .placeholder(R.drawable.ic_refresh_green_100dp)
+                            .error(R.drawable.ic_healing_red_100dp))
+                            .load(currentCharacter.getImage())
+                            .centerCrop()
+                            .into(holder.Image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {

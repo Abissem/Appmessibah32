@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(Dragonball item) {
                 controller.onItemClick(item);
             }
-        });
+        }, this);
         recyclerView.setAdapter(mAdapter);
     }
 
