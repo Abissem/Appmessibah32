@@ -4,7 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/DetailLayout"
+    android:background="@color/colorWhite"
+    >
+
 
     <ImageView
         android:id="@+id/icon"
@@ -23,7 +27,9 @@
         android:layout_alignWithParentIfMissing="true"
         android:layout_marginTop="16dp"
         android:text="Example application"
-        android:textSize="16sp"
+        android:textSize="30sp"
+        android:textColor="@color/colorBlack"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/icon" />
@@ -36,7 +42,9 @@
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Description"
-        android:textSize="12sp"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstLine" />
@@ -49,20 +57,38 @@
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Description"
-        android:textSize="12sp"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondLine" />
 
+    <TextView
+        android:id="@+id/forthLine"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_marginTop="16dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="Description"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thirdLine" />
+
     <ImageButton
         android:id="@+id/returnButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/colorFakeWhite"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/abc_vector_test"
+        app:srcCompat="@drawable/ic_keyboard_return_orange_24dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
