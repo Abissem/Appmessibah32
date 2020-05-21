@@ -89,13 +89,7 @@ public class MainController {
         view.navigateToDetails(dragonball);
     }
 
-    public void onButtonAClick(){
-
+    public void onReturnButtonClick(){
+        view.finish();
     }
-
-    public void onButtonBClick(){
-
-    }
-
-
 }
