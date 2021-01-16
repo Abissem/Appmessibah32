@@ -1,4 +1,4 @@
-# Application dbEXTREME
+# Application mobile DB
 ## Présentation
 Ce projet a pour but de découvrir plusieurs fonctionnalités d'android dans une application codé en Java sur Android Studio.
 
